@@ -1,36 +1,39 @@
 package routers
 
 import (
-	"strings"
-
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+
+	"dingo/routers/api"
+	"dingo/routers/render"
 )
 
 // 初始化路由
 func InitRouters() *echo.Echo {
 	e := echo.New()
+	// 打印log记录
+	e.Use(middleware.Logger())
 
-	// v1版本路由组
-	v1 := e.Group("/api/v1")
-	v1.GET("/ping", func(c echo.Context) error {
-		return c.String(200, "v1-pong")
-	})
-	// v2版本路由组
-	v2 := e.Group("/api/v2")
-	v2.GET("/ping", func(c echo.Context) error {
-		return c.String(200, "v2-pong")
-	})
+	// 程序崩溃时打印错误信息 && 恢复正常执行
+	e.Use(middleware.Recover())
 
-	// 其他路由默认渲染页面
-	e.GET("/*", func(c echo.Context) error {
-		url := c.Request().URL.Path
-		// 根路由默认渲染index.html
-		if url == "/" {
-			return c.File("view/index.html")
+	// 跨域配置
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		// 指定域名示例
+		// AllowOrigins: []string{"http://192.168.1.16, http://www.baidu.com"},
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
 
-		}
-		path := strings.TrimSuffix(url, ".html")
-		return c.File("view/" + path + ".html")
-	})
+	// api分组对象
+	apiGroup := e.Group("/api")
+
+	// api
+	api.Ping(apiGroup)
+	api.User(apiGroup)
+
+	// 渲染页面
+	render.Page(e)
+
 	return e
 }
