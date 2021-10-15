@@ -1,9 +1,10 @@
 package dto
 
+// 用户数据类型
 type User struct {
-	Id         int    `json:"id"`
-	Username   string `json:"username"`
-	Token      string `json:"token"`
-	Created_at int    `json:"created_at"`
-	Updated_at int    `json:"updated_at"`
+	Id        int    `json:"id"`
+	Username  string `json:"username"`
+	Token     string `json:"token"`
+	CreatedAt int    `json:"createdAt"`
+	UpdatedAt int    `json:"updatedAt"`
 }
