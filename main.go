@@ -15,8 +15,11 @@ func main() {
 		log.Fatal("配置文件加载失败。")
 	}
 
-	// 连接数据库
+	// 连接MYSQL数据库
 	model.ConnectMysql()
+
+	// 连接REDIS数据库
+	model.ConnctRedis()
 
 	// 初始化路由
 	e := routers.InitRouters()
