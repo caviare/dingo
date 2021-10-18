@@ -4,6 +4,7 @@ import (
 	"dingo/model"
 	"dingo/routers"
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -17,9 +18,11 @@ func main() {
 
 	// 连接MYSQL数据库
 	model.ConnectMysql()
-
-	// 连接REDIS数据库
-	model.ConnctRedis()
+	rdsn := os.Getenv("REDIS_DSN")
+	if rdsn != "" {
+		// 连接REDIS数据库
+		model.ConnctRedis()
+	}
 
 	// 初始化路由
 	e := routers.InitRouters()
