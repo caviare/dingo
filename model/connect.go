@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// DB 数据库链接单例
+// MYSQL数据库链接单例
 var DB *gorm.DB
 
 // 连接mysql数据库
