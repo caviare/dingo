@@ -62,7 +62,7 @@ func ParamErr(msg string, err error) Response {
 	return Err(CodeParamErr, msg, err)
 }
 
-// 加密失败
+// 加密错误
 func EnCyptErr(msg string, err error) Response {
 	if msg == "" {
 		msg = "加密错误"
