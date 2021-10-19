@@ -1,15 +1,15 @@
 package routers
 
 import (
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-
 	"dingo/routers/api"
 	"dingo/routers/render"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 // 初始化路由
-func InitRouters() *echo.Echo {
+func Init() *echo.Echo {
 	e := echo.New()
 	// 打印log记录
 	e.Use(middleware.Logger())

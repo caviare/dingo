@@ -4,7 +4,8 @@ package dto
 type User struct {
 	Id        int    `json:"id"`
 	Username  string `json:"username"`
+	Password  string `json:"password"`
 	Token     string `json:"token"`
-	CreatedAt int    `json:"createdAt"`
-	UpdatedAt int    `json:"updatedAt"`
+	CreatedAt int64  `gorm:"autoUpdateTime:milli" json:"created_at"`
+	UpdatedAt int64  `gorm:"autoUpdateTime:milli" json:"updated_at"`
 }

@@ -5,14 +5,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 // DB 数据库链接单例
 var DB *gorm.DB
-var RDB *redis.Client
 
 // 连接mysql数据库
 func ConnectMysql() {
@@ -39,18 +37,4 @@ func ConnectMysql() {
 		// 自动迁移
 		migration()
 	}
-}
-
-// 连接redis数据库
-func ConnctRedis() {
-	dsn := os.Getenv("REDIS_DSN")
-	// 连接redis
-	opt, err := redis.ParseURL(dsn)
-	if err != nil {
-		log.Fatal("连接REDIS数据库失败")
-	} else {
-		fmt.Println("")
-		fmt.Println("\033[0;32m------------REDIS连接成功------------\033[0m")
-	}
-	RDB = redis.NewClient(opt)
 }
