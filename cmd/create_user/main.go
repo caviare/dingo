@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// 调用后在users表生成一条用户数据
+// 生成用户 调用后在users表生成一条用户数据
 func main() {
 	// 加载配置文件
 	err := godotenv.Load()
