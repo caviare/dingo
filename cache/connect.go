@@ -8,6 +8,7 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
+// REDIS数据库链接单例
 var RDB *redis.Client
 
 // 连接redis数据库
