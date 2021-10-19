@@ -16,9 +16,12 @@ type UserLoginService struct {
 	Username string
 	Password string
 }
+
+// 用户登录后TOKEN存入用户ID
 type User struct {
 	UserId int `json:"user_id"`
 }
+
 type MyCustomClaims struct {
 	User
 	jwt.StandardClaims
